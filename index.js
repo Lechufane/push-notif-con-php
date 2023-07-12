@@ -22,7 +22,15 @@ function enableNotifications() {
               "BGub5LGHjgzuJtjuIaPnGTU7AEfkMfUQDLHX1SjV32bMN4FSUTKFgDMuOukJBroZxDtXE9ecGWsHz8K9I6hB0_8", //to add public key we need to
           })
           .then((subscription) => {
-            console.log(JSON.stringify(subscription));
+            sub = subscription;
+            //send the subscription to the server.
+            fetch("http://localhost:3000", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(subscription),
+            });
           });
       });
     }
