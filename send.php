@@ -8,16 +8,26 @@ use Minishlink\WebPush\Subscription;
 $auth = [
     'VAPID' => [
         'subject' => 'mailto:diego.villafane94@gmail.com',
-        'publicKey' => 'BNFqRLZDs3ewl8OXOSpN46_R2e1NewbsB-uRAodaJftqwy5FomdoSEJ8a-2B11yotYZsC-9Auux7aoe3uyhMnoI',
-        'privateKey' => 'OSXXbtLwc-KqclVF8jh5g55LtPJPh0MMHaHTUfN8k_w'
+        'publicKey' => 'BGub5LGHjgzuJtjuIaPnGTU7AEfkMfUQDLHX1SjV32bMN4FSUTKFgDMuOukJBroZxDtXE9ecGWsHz8K9I6hB0_8',
+        'privateKey' => 'BkF3Wpb-ebZA01VBE2CYr7Wh-XjxFMYUXyZyCjfhCgo'
     ],
 ];
 
 $webPush = new WebPush($auth);
 
 $report = $webPush->sendOneNotification(
-    Subscription::create(json_decode('{"endpoint":"https://fcm.googleapis.com/fcm/send/fwaqbQse98o:APA91bGzTgYcR6uhE4fbTTKdtBFejn0TEKfDV4XqMOFPLuN7t_FVa2dxZA81GG1xTED7JwHvAtwL8gqEiU5Z1YpphEF1PAW_bbLC3Ok0n9L7W3aIfiESxR_fMPffChHGnQOU3aBBVFQ0","expirationTime":null,"keys":{"p256dh":"BPrLD0fwv8pQsIRjOC7DcVayIY_GDGQsqVu0hnWcDPbisoDOw2rERFOne6bdVUfS8SlhbXz0ndtLUhCWf3PzfxE","auth":"SgbLiUxIMF9EedlX66eRCQ"}}', true)),
-    '{title: "Hola", body: "Mundo", url: "https://ichef.bbci.co.uk/news/624/mcs/media/images/81763000/jpg/_81763098_risitas.jpg"}', 
+    Subscription::create(json_decode('{
+        "endpoint":"https://fcm.googleapis.com/fcm/send/ccdW_lCap7s:APA91bGymVreozKa2w8lTZeKsQUV1JAm9D2zZLKTJ2bPcLZF_u7Op1tOyEa1OaSc22uIIWj-P5l7hvfiKmRb-c8dUfStXSK1aOtulfV8m2_SrHNacWq0gpI17VKnZ_CItQPQudi-uOBB",
+        "expirationTime":null,
+        "keys":{
+            "p256dh":"BKxfIx_JCWPsq8OYtAukTxyHMTqIjVSOEg4f5uhDk0lGSQD9TTDoEw1iRNjjyhPV4WUOoVRuCvulRlDL4wmi1t4",
+            "auth":"sLv9damCS-sFS8cETvNlWw"
+        }}', true)),
+    '{
+        "title": "Hola", 
+        "body": "Mundo", 
+        "url": "./?message=123"
+    }', 
     ['TTL'=> 30000]);
 
     print_r($report);

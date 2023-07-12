@@ -1,5 +1,13 @@
+//aca se registra el service worker
 navigator.serviceWorker.register("/sw.js");
 
+/**
+ * This function is called when the user clicks on a button to enable notifications from the app.
+ * After the user grants the permission, the service worker is ready and we can subscribe to the push manager.
+ * The push manager will return a subscription object that we can use to send notifications to the user.
+ *
+ * @returns {void}
+ */
 function enableNotifications() {
   Notification.requestPermission().then((permision) => {
     //if the permision is granted
@@ -11,7 +19,7 @@ function enableNotifications() {
           .subscribe({
             userVisibleOnly: true,
             applicationServerKey:
-              "BNFqRLZDs3ewl8OXOSpN46_R2e1NewbsB-uRAodaJftqwy5FomdoSEJ8a-2B11yotYZsC-9Auux7aoe3uyhMnoI", //to add public key we need to
+              "BGub5LGHjgzuJtjuIaPnGTU7AEfkMfUQDLHX1SjV32bMN4FSUTKFgDMuOukJBroZxDtXE9ecGWsHz8K9I6hB0_8", //to add public key we need to
           })
           .then((subscription) => {
             console.log(JSON.stringify(subscription));
