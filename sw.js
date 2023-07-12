@@ -15,3 +15,16 @@ self.addEventListener("push", (event) => {
 self.addEventListener("notificationclick", (event) => {
   event.waitUntil(clients.openWindow(event.notification.data.notifURL));
 });
+
+// Inside your service worker script
+self.addEventListener("message", function (event) {
+  // Handle incoming messages from the main thread
+  console.log("Service Worker received message:", event.data);
+
+  // Send a message back to the main thread
+  self.clients.matchAll().then(function (clients) {
+    clients.forEach(function (client) {
+      client.postMessage("Hello from the service worker!");
+    });
+  });
+});
